@@ -39,7 +39,7 @@ function Faq() {
                         </AccordionSummary>
                         <AccordionDetails>
                             <Typography>
-                                All of the wine pruchased on Cellar is stored in a secured bonded warehouse where specific conditions are maintained for the wine to be safely stored. The warehouse provider charges a fixed Storage fee of 0.88EUR per unit, where unit is a crate, or equivalent to 6 bottles of wine.
+                                All of the wine pruchased on Cellar is stored in a secured bonded warehouse where specific conditions are maintained for the wine to be safely stored. The warehouse provider charges a fixed Storage fee of  EUR 1.98 per order.
                             </Typography>
                         </AccordionDetails>
                     </Accordion>

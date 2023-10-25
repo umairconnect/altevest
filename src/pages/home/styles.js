@@ -4,6 +4,7 @@ const useStyles = makeStyles((theme) => ({
     firstSection1: {
         textAlign: 'left',
         margin: '100px',
+        
         paddingLeft: '35px',
         '& h1': {
             fontWeight: '900',
@@ -29,7 +30,8 @@ const useStyles = makeStyles((theme) => ({
         }
     },
     firstSection2: {
-        textAlign: 'right'
+        textAlign: 'right',
+        padding: '10px',
     },
     secondSection: {
         display: 'flex',

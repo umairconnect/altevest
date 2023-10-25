@@ -5,6 +5,7 @@ import Footer from "../../components/footer/Footer";
 
 import drinkImage from "../../images/drinkCanImg.svg";
 import GlobeImage from "../../images/topGlobeImg.svg";
+import Vault2 from "../../images/common/Vault2.jpeg";
 import PhoneTabletImg from "../../images/phoneTabletImg.svg";
 import LaptopPhoneImg from "../../images/laptopPhoneImg.svg";
 import GraphIcon from "../../images/graphImg.svg";
@@ -22,12 +23,12 @@ function HomePage() {
       <Header></Header>
       <Grid container spacing={0} justify="space-between" alignItems={'center'}>
         <Grid item xs={12} md={6} lg={6} sm={6} className={classes.firstSection1}>
-          <h1>New ways to invest in traditional assets</h1>
+          <h1>New ways - historical values</h1>
           <p>At Cellar we provide a fully digital experience of owning traditional physical assets</p>
           <Button variant="contained" className={classes.commonBtn}>Get Started</Button>
         </Grid>
         <Grid item xs={12} md={6} lg={6} sm={6} className={classes.firstSection2}>
-          <img src={GlobeImage}></img>
+          <img src={Vault2}></img>
         </Grid>
       </Grid>
 
