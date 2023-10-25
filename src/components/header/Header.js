@@ -45,7 +45,7 @@ function Header() {
             <Grid item md={6} lg={6} sm={6}>
               <div className={classes.navLinks}>
                 <Link to="/">Home</Link>
-                <Link to="/">Marketplace</Link>
+                <Link to="/Marketplace">Marketplace</Link>
                 <Link to="/about">About Us</Link>
                 <Link to="/Faq">FAQ</Link>
               </div>

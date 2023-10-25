@@ -11,7 +11,7 @@ import LocalSeeIcon from '@mui/icons-material/LocalSee';
 import SentimentSatisfiedAltIcon from '@mui/icons-material/SentimentSatisfiedAlt';
 import SendIcon from '@mui/icons-material/Send';
 
-function About() {
+function CustomerSupport() {
     const classes = useStyles();
     const navigate = useNavigate();
     const [chatList, setChatList] = useState(true);
@@ -164,4 +164,4 @@ function About() {
         </>
     )
 }
-export default About;
+export default CustomerSupport;
