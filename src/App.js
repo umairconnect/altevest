@@ -6,9 +6,9 @@ import Routing from './components/routes/Routing';
 function App() {
   return (
     <div className="App">
-      <BrowserRouter basename="/">
+      <HashRouter basename="/">
         <Routing />
-      </BrowserRouter  >
+      </HashRouter  >
 
     </div>
   );
