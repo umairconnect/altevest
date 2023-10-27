@@ -24,6 +24,7 @@ function Marketplace() {
     }
 
     const [searchText, setSearchText] = useState('');
+    const [products, setProducts] = useState([]);
 
     const Products = [
         {
@@ -47,8 +48,106 @@ function Marketplace() {
     const filteredProducts = Products.filter(product => product.name.toLowerCase().includes(searchText.toLowerCase()));
 
 
-    useEffect(() => {
+    const loadProducts = () => {
+        fetch("http://localhost:9001/productlist")
+            .then(response => {
+                if (!response.ok) {
+                    console.log(response.status);
+                }
+                return response.json();
+            })
+            .then(data => {
+                setProducts(data);
+               // const lwinBatches = splitArrayIntoBatches(data.map(item => item.lwin11.toString()), 50);
+    //
+               // const allPriceData = [];
+    //
+               // const fetchPriceData = (batchIndex) => {
+               //     if (batchIndex < lwinBatches.length) {
+               //         const lwinArray = lwinBatches[batchIndex];
+    //
+               //         const baseUrl = "https://sandbox-api.liv-ex.com";
+               //         const priceDataUrl = "/data/v2/priceData";
+               //         const lwinViewUrl = "/lwin/view/v1/lwinView";
+    //
+               //         const priceDataParams = {
+               //             lwin: lwinArray,
+               //             priceType: ["B", "C", "F"],
+               //             priceDate: "",
+               //             currency: "usd",
+               //         };
+               //         
+//
+               //          debugger;
+               //         var headerParams = {
+               //             'CLIENT_KEY': 'bbe4300c-53c1-4e09-86e9-edbf9d30c178',
+               //             'CLIENT_SECRET': 'MXcIEoDY',
+               //             'ACCEPT': 'application/json',
+               //             'CONTENT-TYPE': 'application/json'
+               //         }
+               //        
+               //         //for priceData Api
+               //         fetch(baseUrl + priceDataUrl, {
+               //             method: 'POST',
+               //             headers: headerParams,
+               //             body: JSON.stringify(priceDataParams)
+               //         })
+               //         .then(res => res.json())
+               //         .then(priceData => {
+               //             allPriceData.push(priceData);
+               //             fetchPriceData(batchIndex + 1);
+               //             debugger;
+               //         })
+               //         .catch(error => {
+               //             console.error(error);
+               //         });
+//
+               //         //for lwin view api to get the product colour
+               //       
+               //     } else {
+               //         
+               //         debugger;
+               //         const combinedData = data.map(dbItem => {
+               //             debugger;
+               //             const lwinDetail = allPriceData.find(priceData => priceData.lwinDetail.some(item => item.lwin === dbItem.lwin11.toString()));
+               //             if (lwinDetail) {
+               //                 //const combinedItem = lwinDetail.find(item => item.lwin === dbItem.lwin11.toString());
+               //                 return {
+               //                     ...dbItem,
+               //                     bestBuy: lwinDetail.dataDetail.find(dataItem => dataItem.priceType === "B"),
+               //                     bestSell: lwinDetail.dataDetail.find(dataItem => dataItem.priceType === "C"),
+               //                     lastTrade: lwinDetail.dataDetail.find(dataItem => dataItem.priceType === "F"),
+               //                 };
+               //                
+               //             } else {
+               //                 return dbItem;
+               //             }
+               //         });
+               //         console.log(combinedData);
+               //         setProducts(combinedData);
+               //     }
+               // };
+    //
+               // fetchPriceData(0);
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    };
+    
+    
+      function splitArrayIntoBatches(arr, batchSize) {
+        const batches = [];
+        for (let i = 0; i < arr.length; i += batchSize) {
+          batches.push(arr.slice(i, i + batchSize));
+        }
+        return batches;
+      }
+      
 
+
+    useEffect(() => {
+       loadProducts();
     }, [])
     return (
         <>
@@ -94,9 +193,9 @@ function Marketplace() {
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
-                                    {filteredProducts.map((product, index) => (
+                                    {products.map((product, index) => (
                                         <TableRow key={index}>
-                                            <TableCell>{product.name}</TableCell>
+                                            <TableCell>{product.wine}</TableCell>
                                             <TableCell>{product.color}</TableCell>
                                             <TableCell>{product.bestSell}</TableCell>
                                             <TableCell>{product.bestBuy}</TableCell>
