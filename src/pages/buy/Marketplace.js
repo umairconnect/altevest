@@ -25,6 +25,7 @@ function Marketplace() {
 
     const [searchText, setSearchText] = useState('');
     const [products, setProducts] = useState([]);
+    const [lwinBatches,  setLwinBatches] = useState([]);
 
     const Products = [
         {
@@ -57,92 +58,96 @@ function Marketplace() {
                 return response.json();
             })
             .then(data => {
+                var batches = splitArrayIntoBatches(data.map(item => item.lwin11.toString()), 50);
+                setLwinBatches(batches);
                 setProducts(data);
-               // const lwinBatches = splitArrayIntoBatches(data.map(item => item.lwin11.toString()), 50);
-    //
-               // const allPriceData = [];
-    //
-               // const fetchPriceData = (batchIndex) => {
-               //     if (batchIndex < lwinBatches.length) {
-               //         const lwinArray = lwinBatches[batchIndex];
-    //
-               //         const baseUrl = "https://sandbox-api.liv-ex.com";
-               //         const priceDataUrl = "/data/v2/priceData";
-               //         const lwinViewUrl = "/lwin/view/v1/lwinView";
-    //
-               //         const priceDataParams = {
-               //             lwin: lwinArray,
-               //             priceType: ["B", "C", "F"],
-               //             priceDate: "",
-               //             currency: "usd",
-               //         };
-               //         
-//
-               //          debugger;
-               //         var headerParams = {
-               //             'CLIENT_KEY': 'bbe4300c-53c1-4e09-86e9-edbf9d30c178',
-               //             'CLIENT_SECRET': 'MXcIEoDY',
-               //             'ACCEPT': 'application/json',
-               //             'CONTENT-TYPE': 'application/json'
-               //         }
-               //        
-               //         //for priceData Api
-               //         fetch(baseUrl + priceDataUrl, {
-               //             method: 'POST',
-               //             headers: headerParams,
-               //             body: JSON.stringify(priceDataParams)
-               //         })
-               //         .then(res => res.json())
-               //         .then(priceData => {
-               //             allPriceData.push(priceData);
-               //             fetchPriceData(batchIndex + 1);
-               //             debugger;
-               //         })
-               //         .catch(error => {
-               //             console.error(error);
-               //         });
-//
-               //         //for lwin view api to get the product colour
-               //       
-               //     } else {
-               //         
-               //         debugger;
-               //         const combinedData = data.map(dbItem => {
-               //             debugger;
-               //             const lwinDetail = allPriceData.find(priceData => priceData.lwinDetail.some(item => item.lwin === dbItem.lwin11.toString()));
-               //             if (lwinDetail) {
-               //                 //const combinedItem = lwinDetail.find(item => item.lwin === dbItem.lwin11.toString());
-               //                 return {
-               //                     ...dbItem,
-               //                     bestBuy: lwinDetail.dataDetail.find(dataItem => dataItem.priceType === "B"),
-               //                     bestSell: lwinDetail.dataDetail.find(dataItem => dataItem.priceType === "C"),
-               //                     lastTrade: lwinDetail.dataDetail.find(dataItem => dataItem.priceType === "F"),
-               //                 };
-               //                
-               //             } else {
-               //                 return dbItem;
-               //             }
-               //         });
-               //         console.log(combinedData);
-               //         setProducts(combinedData);
-               //     }
-               // };
-    //
-               // fetchPriceData(0);
+                
+               // getPriceData(data);
             })
             .catch(error => {
                 console.error(error);
             });
     };
+
+    const getWineColour = () => {
+        
+    }
+
+    const getPriceData = (dbData) => {
+      
+         const allPriceData = [];
+   
+         const fetchPriceData = (batchIndex) => {
+            if (batchIndex < lwinBatches.length) {
+               const lwinArray = lwinBatches[batchIndex];
+   
+                 const baseUrl = "https://sandbox-api.liv-ex.com";
+                 const priceDataUrl = "/data/v2/priceData";
+                 const lwinViewUrl = "/lwin/view/v1/lwinView";
+   
+                 const priceDataParams = {
+                    lwin: lwinArray,
+                    priceType: ["B", "C", "F"],
+                    priceDate: "",
+                    currency: "usd",
+                 };
+                       
+                 var headerParams = {
+                   'CLIENT_KEY': 'bbe4300c-53c1-4e09-86e9-edbf9d30c178',
+                   'CLIENT_SECRET': 'MXcIEoDY',
+                   'ACCEPT': 'application/json',
+                   'CONTENT-TYPE': 'application/json'
+                }
+                      
+                 //for priceData Api
+                fetch(baseUrl + priceDataUrl, {
+                    method: 'POST',
+                    headers: headerParams,
+                    body: JSON.stringify(priceDataParams)
+                })
+                .then(res => res.json())
+                .then(priceData => {
+                    allPriceData.push(priceData);
+                    fetchPriceData(batchIndex + 1);
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+                     
+           } else {
+               
+               const combinedData = products.map(product => {
+                   debugger;
+                   const lwinDetail = allPriceData.find(priceData => priceData.lwinDetail.some(item => item.lwin === product.lwin11.toString()));
+                   if (lwinDetail) {
+                       //const combinedItem = lwinDetail.find(item => item.lwin === dbItem.lwin11.toString());
+                       return {
+                           ...product,
+                           bestBuy: lwinDetail.dataDetail.find(dataItem => dataItem.priceType === "B"),
+                           bestSell: lwinDetail.dataDetail.find(dataItem => dataItem.priceType === "C"),
+                           lastTrade: lwinDetail.dataDetail.find(dataItem => dataItem.priceType === "F"),
+                       };
+                      
+                   } else {
+                       return product;
+                   }
+               });
+               console.log(combinedData);
+               setProducts(combinedData);
+           }
+        };
+   
+         fetchPriceData(0);
+    }
     
     
-      function splitArrayIntoBatches(arr, batchSize) {
-        const batches = [];
-        for (let i = 0; i < arr.length; i += batchSize) {
-          batches.push(arr.slice(i, i + batchSize));
-        }
-        return batches;
-      }
+   function splitArrayIntoBatches(arr, batchSize) {
+     const batches = [];
+     for (let i = 0; i < arr.length; i += batchSize) {
+       batches.push(arr.slice(i, i + batchSize));
+     }
+     return batches;
+   }
       
 
 
