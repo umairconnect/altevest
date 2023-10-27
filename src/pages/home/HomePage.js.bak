@@ -3,12 +3,9 @@ import { Grid, Button, TextField } from '@mui/material';
 import useStyles from "./styles";
 import Footer from "../../components/footer/Footer";
 
-import drinkImage from "../../images/Château-Pontet-Canet.jpg";
-import Rothschild from "../../images/Château-Mouton-Rothschild.jpeg";
-import RoedererCristal from "../../images/Louis-Roederer-Cristal-Rose.jpeg";
-
+import drinkImage from "../../images/drinkCanImg.svg";
 import GlobeImage from "../../images/topGlobeImg.svg";
-import Berral from "../../images/common/berral.jpeg";
+import berral from "../../images/common/berral.jpeg";
 import PhoneTabletImg from "../../images/phoneTabletImg.svg";
 import LaptopPhoneImg from "../../images/laptopPhoneImg.svg";
 import GraphIcon from "../../images/graphImg.svg";
@@ -31,7 +28,7 @@ function HomePage() {
           <Button variant="contained" className={classes.commonBtn}>Get Started</Button>
         </Grid>
         <Grid item xs={12} md={6} lg={6} sm={6} className={classes.firstSection2}>
-          <img src={Berral}></img>
+          <img src={berral}></img>
         </Grid>
       </Grid>
 
@@ -44,21 +41,19 @@ function HomePage() {
 
           <Grid item className={classes.drinkItem}>
             <img src={drinkImage}></img>
-            <p>Château Pontet Canet</p>
-          </Grid>
-
-          <Grid item className={classes.drinkItem}>
-            <img src={RoedererCristal}></img>
-            <p>Château Mouton Rothschild</p>
-
+            <p>Lorem ipsum</p>
           </Grid>
 
           <Grid item className={classes.drinkItem} style={{ minHeight: '480px' }}>
-            <img src={Rothschild}></img>
-            <p>Louis Roederer Cristal</p>
+            <img src={Pngwing}></img>
+            <p>Lorem ipsum dolor sit</p>
           </Grid>
 
-     
+          <Grid item className={classes.drinkItem}>
+            <img src={drinkImage}></img>
+            <p>Lorem ipsum</p>
+
+          </Grid>
         </Grid>
 
         <Grid row style={{ margin: 'auto' }}>

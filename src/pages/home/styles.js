@@ -32,6 +32,9 @@ const useStyles = makeStyles((theme) => ({
     firstSection2: {
         textAlign: 'right',
         padding: '10px',
+        "& img": {
+            maxWidth: '560px',
+        }
     },
     secondSection: {
         display: 'flex',
