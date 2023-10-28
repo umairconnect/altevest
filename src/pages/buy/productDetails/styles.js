@@ -5,9 +5,6 @@ const useStyles = makeStyles((theme) => ({
     container: {
         padding: '20px 30px',
         justifyContent: 'center',
-        "& h1": {
-            color: '#981B46',
-        }
     },
 
     pageHeader: {
@@ -30,16 +27,6 @@ const useStyles = makeStyles((theme) => ({
             textTransform: 'uppercase',
         }
     },
-    buyBtn : {
-        background: '#159600 !important',
-        color: 'white !important',
-        margin: '0 5px !important',
-    },
-    sellBtn : {
-        background: '#981B46 !important',
-        color: 'white !important',
-        margin: '0 5px !important',
-    }
    
    
 }));
