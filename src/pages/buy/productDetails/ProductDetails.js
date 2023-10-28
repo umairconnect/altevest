@@ -3,6 +3,7 @@ import { Grid, Table, TableContainer, TableHead, TableBody, TableRow, TableCell,
 import useStyles from "./styles";
 import { Done } from '@mui/icons-material';
 import drinkImage from "../../../images/drinkCanImg.svg";
+import DetailChart from "./charts/DetailChart";
 function ProductDetails() {
     const classes = useStyles();
     const productData = [
@@ -45,7 +46,7 @@ function ProductDetails() {
             <Grid container className={classes.container}>
                 <Grid item sm={6} md={6} lg={6}>
                     <div className={classes.whiteBox}>
-                        sfsdf
+                         <DetailChart />
                     </div>
                 </Grid>
                 <Grid item sm={6} md={6} lg={6}>
@@ -92,7 +93,7 @@ function ProductDetails() {
                                 <TableBody>
                                         <TableRow>
                                             <TableCell>Cases: 01 </TableCell>
-                                            <TableCell>Price per Case $12,000</TableCell>
+                                            <TableCell style={{textAlign: 'right'}}>Price per Case $12,000</TableCell>
                                         </TableRow>
                                 </TableBody>
                             </Table>
