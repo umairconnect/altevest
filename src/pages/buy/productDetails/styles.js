@@ -27,6 +27,27 @@ const useStyles = makeStyles((theme) => ({
             textTransform: 'uppercase',
         }
     },
+    stepBox: {
+        "& svg": {
+            background: '#981B46',
+            color: 'white',
+            borderRadius: '50px',
+            padding: '7px',
+            fontSize: '34px',
+        },
+        "& h3": {
+            color: '#981B46',
+            fontFamily: 'Lato',
+            fontSize: '16px',
+            fontWeight: 400,
+            lineHeight: '17px',
+            letterSpacing: '0em'
+        }
+        
+    },
+    whiteBox: {
+        boxShadow: '0px 0px 20px 0px #00000040',
+    }
    
    
 }));
