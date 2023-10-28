@@ -5,6 +5,9 @@ const useStyles = makeStyles((theme) => ({
     container: {
         padding: '20px 30px',
         justifyContent: 'center',
+        "& h1": {
+            color: '#981B46',
+        }
     },
 
     pageHeader: {
@@ -47,7 +50,14 @@ const useStyles = makeStyles((theme) => ({
     },
     whiteBox: {
         boxShadow: '0px 0px 20px 0px #00000040',
+        padding: '20px',
+        margin: '13px',
+        minHeight: '300px',
+        display: 'flex',
+        flexFlow: 'column',
+        justifyContent: 'center',
     }
+    
    
    
 }));

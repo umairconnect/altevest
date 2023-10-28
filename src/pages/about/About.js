@@ -1,10 +1,6 @@
 import React from "react";
 import { Grid, Accordion, AccordionSummary, AccordionDetails, Typography } from '@mui/material';
-import AcUnitIcon from '@mui/icons-material/AcUnit';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import useStyles from "./styles";
-import drinkImage from "../../images/drinkCanImg.svg";
-import GlobeImage from "../../images/topGlobeImg.svg";
 import { Link, useNavigate } from 'react-router-dom';
 import Header from "../../components/header/Header";
 import Footer from "../../components/footer/Footer";
