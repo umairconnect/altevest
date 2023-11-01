@@ -33,6 +33,7 @@ function ProductDetails(product, ...props) {
             contractType: ["sib","x", "sep"],
             includeMarketPrice: true,
             includeLastTrade: true,
+            lwin: [product.product.lwin11]
             }
                 
         }
@@ -48,13 +49,16 @@ function ProductDetails(product, ...props) {
         .then((data) => {
            debugger;
            var parsedData = JSON.parse(data);
-           var item = parsedData.bidOfferResponse.find(x => x.lwin == product.product.lwin11.toString());
-
-           if(!isNaN(item))
+           if(parsedData.bidOfferResponse[0].market[0])
            {
-            setBidOffer(item.market[0].depth.offers.offer);
+            var item = parsedData.bidOfferResponse[0].market[0].depth.offers.offer;
+            
+              if(item)
+              {
+               setBidOffer(item);
+              }
            }
-          
+    
         })
     }
 
