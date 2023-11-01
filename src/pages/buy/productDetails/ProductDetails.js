@@ -52,7 +52,7 @@ function ProductDetails(product, ...props) {
            if(parsedData.bidOfferResponse[0].market[0])
            {
             var item = parsedData.bidOfferResponse[0].market[0].depth.offers.offer;
-            
+
               if(item)
               {
                setBidOffer(item);

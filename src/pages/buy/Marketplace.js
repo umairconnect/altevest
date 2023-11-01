@@ -33,8 +33,9 @@ function Marketplace() {
         setProductInfo(item);
         setProductDetailPage(true)
     }
-    const handleSell = () => {
-        debugger
+    const handleSell = (item) => {
+        setProductInfo(item);
+        setProductDetailPage(true)
     }
 
     const [searchText, setSearchText] = useState('');
