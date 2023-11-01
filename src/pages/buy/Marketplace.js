@@ -13,6 +13,9 @@ function Marketplace() {
     const navigate = useNavigate();
     const [productDetail, setProductDetail] = useState(false);
     const [paymentDetail, setPaymentDetail] = useState(false);
+    
+    const [productDetailPage, setProductDetailPage] = useState(false);
+    const [productInfo, setProductInfo] = useState({});
 
     const rowsPerPageOptions = [5, 10, 25];
     const [page, setPage] = useState(0);
@@ -29,11 +32,13 @@ function Marketplace() {
 
     const data = [
     ];
-    const handleBuy = () => {
-        setProductDetail(true)
+    const handleBuy = (item) => {
+        setProductInfo(item);
+        setProductDetailPage(true)
     }
-    const handleSell = () => {
-        debugger
+    const handleSell = (item) => {
+        setProductInfo(item);
+        setProductDetailPage(true)
     }
 
     const [searchText, setSearchText] = useState('');
@@ -63,7 +68,7 @@ function Marketplace() {
 
 
     const loadProducts = () => {
-        fetch("http://localhost:7654/productlist")
+        fetch("http://localhost:7655/productlist")
             .then(response => {
                 if (!response.ok) {
                     console.log(response.status);
@@ -74,8 +79,7 @@ function Marketplace() {
                 var batches = splitArrayIntoBatches(data.map(item => item.lwin11.toString()), 50);
                 setLwinBatches(batches);
                 setProducts(data);
-
-                // getPriceData(data);
+               // getPriceData(data);
             })
             .catch(error => {
                 console.error(error);
@@ -111,7 +115,7 @@ function Marketplace() {
                     'ACCEPT': 'application/json',
                     'CONTENT-TYPE': 'application/json'
                 }
-
+                debugger;
                 //for priceData Api
                 fetch(baseUrl + priceDataUrl, {
                     method: 'POST',
@@ -121,6 +125,7 @@ function Marketplace() {
                     .then(res => res.json())
                     .then(priceData => {
                         allPriceData.push(priceData);
+                        console.log(priceData);
                         fetchPriceData(batchIndex + 1);
                     })
                     .catch(error => {
@@ -145,7 +150,7 @@ function Marketplace() {
                         return product;
                     }
                 });
-                console.log(combinedData);
+               
                 setProducts(combinedData);
             }
         };
@@ -163,15 +168,14 @@ function Marketplace() {
     }
 
 
-
     useEffect(() => {
-        loadProducts();
+       loadProducts();
     }, [])
     return (
         <>
             <Header></Header>
 
-            {!productDetail ?
+            {!productDetailPage ?
                 <Grid>
                     <Grid container className={classes.pageHeader} style={{ backgroundImage: 'url(' + AboutSecBg + ')' }}>
                         <Grid row>
@@ -249,7 +253,7 @@ function Marketplace() {
                 </Grid>
                 :
                 <Grid>
-                    <ProductDetails></ProductDetails>
+                    <ProductDetails product={productInfo}></ProductDetails>
                 </Grid>
             }
 
