@@ -12,6 +12,7 @@ function Marketplace() {
     const classes = useStyles();
     const navigate = useNavigate();
     const [productDetail, setProductDetail] = useState(false);
+    const [paymentDetail, setPaymentDetail] = useState(false);
 
     const rowsPerPageOptions = [5, 10, 25];
     const [page, setPage] = useState(0);
@@ -212,7 +213,7 @@ function Marketplace() {
                                             </TableRow>
                                         </TableHead>
                                         <TableBody>
-                                            {products.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((product, index) => (
+                                            {filteredProducts.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((product, index) => (
                                                 <TableRow key={index}>
                                                     <TableCell>{product.wine}</TableCell>
                                                     <TableCell>{product.color}</TableCell>

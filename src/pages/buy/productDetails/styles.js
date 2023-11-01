@@ -56,6 +56,21 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         flexFlow: 'column',
         justifyContent: 'center',
+        "& h3": {
+            margin: 0,
+        }, 
+    },
+    buyNow: {
+        margin: '13px',
+        "& Button": {
+            width: '100%',
+            color: '#981B46',
+            fontWeight: 'bold',
+            border: '2px solid #981B46',
+            padding: '11px 8px',
+            boxShadow: '0px 0px 20px 0px #0000001F',
+            background: 'white',
+        }
     }
     
    
