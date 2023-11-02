@@ -68,7 +68,7 @@ function Marketplace() {
 
 
     const loadProducts = () => {
-        fetch("http://localhost:7655/productlist")
+        fetch("https://builto.work/projects/altevest_api/productlist")
             .then(response => {
                 if (!response.ok) {
                     console.log(response.status);
@@ -217,7 +217,7 @@ function Marketplace() {
                                             </TableRow>
                                         </TableHead>
                                         <TableBody>
-                                            {filteredProducts.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((product, index) => (
+                                            {products.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((product, index) => (
                                                 <TableRow key={index}>
                                                     <TableCell>{product.wine}</TableCell>
                                                     <TableCell>{product.color}</TableCell>

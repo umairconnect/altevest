@@ -62,7 +62,7 @@ function Login() {
         console.log(idToken);
         
         // Send the `idToken` to your Node.js server for authentication
-        fetch('https://nodejsclusters-151591-0.cloudclusters.net/auth/google', {
+        fetch('https://builto.work/projects/altevest_api/auth/google', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -85,7 +85,7 @@ function Login() {
 
         if (errorList.length < 1) {
 
-            const result = await fetch('https://nodejsclusters-151591-0.cloudclusters.net/login', {
+            const result = await fetch('https://builto.work/projects/altevest_api/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Grid, Button } from '@mui/material';
+import { Grid, Button, Select, MenuItem } from '@mui/material';
 
 import useStyles from './styles';
 
@@ -37,7 +37,7 @@ function Signup() {
         debugger
         console.log(idToken)
         // Send the `idToken` to your Node.js server for registration
-        fetch('https://nodejsclusters-151591-0.cloudclusters.net/auth/google-signup', {
+        fetch('https://builto.work/projects/altevest_api/auth/google-signup', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -107,7 +107,7 @@ function Signup() {
         Validate(errorList);
 
         if (errorList.length < 1) {
-            const result = await fetch('https://nodejsclusters-151591-0.cloudclusters.net/signup', {
+            const result = await fetch('https://builto.work/projects/altevest_api/signup', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -133,10 +133,7 @@ function Signup() {
 
 
     const selectGoal = [
-        {
-            value: "",
-            label: "Experience"
-        },
+   
         {
             value: "Invester",
             label: "Invester"
@@ -148,10 +145,7 @@ function Signup() {
     ]
 
     const experienceOptions = [
-        {
-            value: "",
-            label: "Experience"
-        },
+
         {
             value: "Invester",
             label: "Invester"
@@ -269,8 +263,8 @@ function Signup() {
                                     id="experience"
                                     value={state.experience}
                                     onChange={handleChange}
-                                    defualtValue={"Experience"}
-                                />
+                                    placeholder={"Select experience"}
+                                /> 
                             </Grid>
                         </Grid>
                     </Grid>
@@ -300,7 +294,7 @@ function Signup() {
 
 
                     <Grid row>
-                     
+
 
                         <GoogleLogin
                             clientId="587694116558-vrfp6qen3jjrfma0euk7072cfcbht8br.apps.googleusercontent.com"
