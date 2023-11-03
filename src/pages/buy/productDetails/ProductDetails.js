@@ -102,7 +102,7 @@ function ProductDetails(product, ...props) {
             <Grid container className={classes.container}>
                 <Grid item sm={6} md={6} lg={6}>
                     <div className={classes.whiteBox}>
-                         <DetailChart />
+                        <DetailChart />
                     </div>
                 </Grid>
                 <Grid item sm={6} md={6} lg={6}>
@@ -113,7 +113,7 @@ function ProductDetails(product, ...props) {
 
                 <Grid item sm={6} md={6} lg={6}>
                     <div className={classes.whiteBox}>
-                        <h3  className="alignLeft">Adrianna Mundus Bacillus Terrae</h3>
+                        <h3 className="alignLeft">Adrianna Mundus Bacillus Terrae</h3>
                         <TableContainer component={Paper}>
                             <Table>
                                 <TableHead>
@@ -160,6 +160,47 @@ function ProductDetails(product, ...props) {
                         </TableContainer>
                     </div>
                 </Grid>
+
+                <Grid item sm={6} md={6} lg={6}>
+                  
+                </Grid>
+
+                <Grid item sm={6} md={6} lg={6}>
+                    <div className={classes.whiteBox}>
+                        <TableContainer component={Paper}>
+                            <Table>
+                                <TableBody>
+                                    <TableRow>
+                                         <TableCell>Commision </TableCell>
+                                         <TableCell style={{ textAlign: 'right' }}>$52</TableCell>
+                                    </TableRow>
+                                    
+                                    <TableRow>
+                                        <TableCell>Storage Fee </TableCell>
+                                        <TableCell style={{ textAlign: 'right' }}>$0.7</TableCell>
+                                    </TableRow>
+
+                                    <TableRow>
+                                        <TableCell><h3> Available balance</h3></TableCell>
+                                        <TableCell style={{ textAlign: 'right' }}><h3>$800</h3></TableCell>
+                                    </TableRow>
+
+                                    <TableRow>
+                                        <TableCell><h3>  Toal Price</h3></TableCell>
+                                        <TableCell style={{ textAlign: 'right' }}><h3>$1,2520.70</h3></TableCell>
+                                    </TableRow>
+                                
+                                </TableBody>
+                            </Table>
+                        </TableContainer>
+                    </div>
+                    <div className={classes.buyNow}>
+                        <Button> Buy Now
+                        </Button>
+                    </div>
+                </Grid>
+
+          
             </Grid>
 
 

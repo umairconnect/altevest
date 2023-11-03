@@ -28,3 +28,6 @@ body {
     color: red;
     font-size: 15px;
 }
+.MuiTableContainer-root {
+  box-shadow: none !important;
+}

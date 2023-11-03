@@ -11,6 +11,9 @@ import ProductDetails from "./productDetails/ProductDetails";
 function Marketplace() {
     const classes = useStyles();
     const navigate = useNavigate();
+    const [productDetail, setProductDetail] = useState(false);
+    const [paymentDetail, setPaymentDetail] = useState(false);
+    
     const [productDetailPage, setProductDetailPage] = useState(false);
     const [productInfo, setProductInfo] = useState({});
 
@@ -65,7 +68,7 @@ function Marketplace() {
 
 
     const loadProducts = () => {
-        fetch("http://localhost:7655/productlist")
+        fetch("https://builto.work/projects/altevest_api/productlist")
             .then(response => {
                 if (!response.ok) {
                     console.log(response.status);

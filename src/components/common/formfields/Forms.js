@@ -1,5 +1,5 @@
 import {
-    TextField, Input, OutlinedInput,
+    TextField, Input, OutlinedInput, InputLabel,
     Select, MenuItem, Button, FormControl
 } from '@mui/material';
 import { Link } from 'react-router-dom';
@@ -29,23 +29,24 @@ function SelectField({ id, name, onChange, value, options, placeholder, ...props
     const classes = useStyles();
     return (
 
-        <Select
-            className={classes.selectField}
-            id={id}
-            name={name}
-            onChange={onChange}
-            value={value}
-            defaultEmpty
-        >
- 
-            {options.map((item, i) => {
-                return (
-                    <MenuItem value={item.value}>
+        <FormControl fullWidth>
+            <InputLabel id="demo-simple-select-label">{placeholder}</InputLabel>
+            <Select
+                labelId="demo-simple-select-label"
+                id={id}
+                name={name}
+                value={value}
+                onChange={onChange}
+                className={classes.selectField}
+            >
+                {options.map((item, i) => (
+                    <MenuItem key={item.value} value={item.value}>
                         {item.label}
                     </MenuItem>
-                )
-            })}
-        </Select>
+                ))}
+            </Select>
+        </FormControl>
+
     )
 }
 
