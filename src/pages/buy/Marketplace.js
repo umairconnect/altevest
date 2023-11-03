@@ -73,10 +73,10 @@ function Marketplace() {
                 return response.json();
             })
             .then(data => {
-                var batches = splitArrayIntoBatches(data.map(item => item.lwin11.toString()), 50);
+                var batches = splitArrayIntoBatches(data.map(item => item.lwin11), 50);
                 setLwinBatches(batches);
                 setProducts(data);
-               // getPriceData(data);
+                getPriceData(data);
             })
             .catch(error => {
                 console.error(error);
@@ -94,17 +94,22 @@ function Marketplace() {
         const fetchPriceData = (batchIndex) => {
             if (batchIndex < lwinBatches.length) {
                 const lwinArray = lwinBatches[batchIndex];
-
+                //using the bidOffer api here
                 const baseUrl = "https://sandbox-api.liv-ex.com";
-                const priceDataUrl = "/data/v2/priceData";
+                const bidOfferUrl = "/data/v2/priceData";
                 const lwinViewUrl = "/lwin/view/v1/lwinView";
 
-                const priceDataParams = {
-                    lwin: lwinArray,
-                    priceType: ["B", "C", "F"],
-                    priceDate: "",
-                    currency: "usd",
-                };
+                var bidOfferParams = { 
+                    bidOffer: {
+                     includeBid: true,
+                     includeOffer: true,
+                     currency: "usd",
+                     contractType: ["sib","x", "sep"],
+                     includeMarketPrice: true,
+                     includeLastTrade: true,
+                     lwin: lwinArray
+                    }     
+                }
 
                 var headerParams = {
                     'CLIENT_KEY': 'bbe4300c-53c1-4e09-86e9-edbf9d30c178',
@@ -112,12 +117,12 @@ function Marketplace() {
                     'ACCEPT': 'application/json',
                     'CONTENT-TYPE': 'application/json'
                 }
+
                 debugger;
-                //for priceData Api
-                fetch(baseUrl + priceDataUrl, {
+                fetch(baseUrl + bidOfferUrl, {
                     method: 'POST',
                     headers: headerParams,
-                    body: JSON.stringify(priceDataParams)
+                    body: JSON.stringify(bidOfferParams)
                 })
                     .then(res => res.json())
                     .then(priceData => {
